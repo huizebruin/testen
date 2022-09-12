@@ -5,7 +5,7 @@ sensor:
 
   - platform: template
     id: S0tool_uptime_timestamp
-    name: "online sinds"
+    name: "${name} online sinds"
     device_class: "timestamp"
     accuracy_decimals: 0
     update_interval: never
@@ -23,7 +23,7 @@ sensor:
     
 text_sensor:
   - platform: template
-    name: "s0tool_versie"
+    name: "${name}_versie"
     id: s0tool_versie
     icon: "mdi:label-outline"
     update_interval: 6h
@@ -32,23 +32,29 @@ text_sensor:
 
   - platform: wifi_info
     ip_address:
-      name: IP-adres
+      name: "${name} IP-adres"
       id: s0tool_ip_adres
       icon: mdi:ip-network
     ssid:
-      name: Netwerk
+      name: "${name} Netwerk"
       id: s0tool_netwerk
       icon: mdi:access-point-network
     mac_address:
-      name: Mac-adres
+      name: "${name} Mac-adres"
       id: s0tool_mac_adres
       icon: mdi:folder-key-network-outline
 
-# ⬇ restart button voor de s0tool ⬇ #
+#  restart button  #
 button:  
   - platform: restart
-    name: "Restart device"
-
+    name: "${name} Restart device"
+    
+# safe mode switch
+switch:
+  - platform: safe_mode
+    name: "${name} Safe Mode"   
+    
+# diagnostic button #
 binary_sensor:
   - platform: status
     name: ${name} Status

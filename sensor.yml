@@ -1,3 +1,5 @@
+substitutions:
+
 sensor:
 #------------------------#  sensoren #------------------------#
   - platform: uptime

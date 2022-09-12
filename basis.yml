@@ -1,5 +1,3 @@
-
-esphome:
 sensor:
 #------------------------#  sensoren #------------------------#
   - platform: uptime
@@ -50,3 +48,8 @@ text_sensor:
 button:  
   - platform: restart
     name: "Restart device"
+
+binary_sensor:
+  - platform: status
+    name: ${device_name} ${device_type} Status
+    entity_category: diagnostic

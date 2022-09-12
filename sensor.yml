@@ -1,5 +1,5 @@
 substitutions:
-
+esphome:
 sensor:
 #------------------------#  sensoren #------------------------#
   - platform: uptime

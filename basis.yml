@@ -57,5 +57,5 @@ switch:
 # diagnostic button #
 binary_sensor:
   - platform: status
-    name: ${name} Status
+    name: "${name} Status"
     entity_category: diagnostic

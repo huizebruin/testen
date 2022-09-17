@@ -5,11 +5,8 @@ substitutions:
 improv_serial:
   
 wifi:
-# secrets rechts boven binnen esphome (vanaf versie 2021.12.0 - 11th standaard in de secrets)
   # ssid: "wifi_ssid"
   # password: "wifi_password"
-#------------------------##------------------------##------------------------##------------------------#
-# ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
 # ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #
   ap:
     ssid: "${name}"

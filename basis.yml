@@ -1,5 +1,7 @@
 substitutions:
   vdate: "v22.9.16"
+  device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
+
   
 sensor:
 #------------------------#  sensoren #------------------------#

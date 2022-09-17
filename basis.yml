@@ -1,3 +1,6 @@
+substitutions:
+  vdate: "v22.9.16"
+  
 sensor:
 #------------------------#  sensoren #------------------------#
   - platform: uptime

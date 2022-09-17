@@ -1,7 +1,16 @@
 substitutions:
   vdate: "v22.9.16b2"
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
- 
+  
+  
+logger:
+  level: INFO
+  
+ota:
+  safe_mode: true
+  reboot_timeout: 10min
+  num_attempts: 5 
+  
 #  ⬇ Enable time component voor reset elke nacht ⬇ #
 time:
   - platform: homeassistant

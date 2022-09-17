@@ -13,6 +13,9 @@ wifi:
   ap:
     ssid: "${name}"
 
+web_server:
+  port: 80
+  
 ota:
   safe_mode: true
   reboot_timeout: 10min

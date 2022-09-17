@@ -19,7 +19,7 @@ globals:
 # ⬇ Bij het flashen,pas dit aan! ⬇ #        
     initial_value: '001' 
     
-
+sensor:
 #------------------------# Watermeter #------------------------#
 # ⬇ watermeter pulsen ⬇ #
   - platform: pulse_counter

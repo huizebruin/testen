@@ -6,7 +6,13 @@ improv_serial:
   
 logger:
   level: INFO
-  
+
+wifi:
+  # ssid: "wifi_ssid"
+  # password: "wifi_password"
+  ap:
+    ssid: "${name}"
+
 ota:
   safe_mode: true
   reboot_timeout: 10min

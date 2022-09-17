@@ -1,7 +1,13 @@
 substitutions:
-  vdate: "v22.9.16beta"
+  vdate: "v22.9.16b2"
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
-  
+ 
+#  ⬇ Enable time component voor reset elke nacht ⬇ #
+time:
+  - platform: homeassistant
+    id: time_homeassistant
+    on_time_sync:
+      - component.update: S0tool_uptime_timestamp 
   
 sensor:
 #------------------------#  sensoren #------------------------#

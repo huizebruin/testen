@@ -9,15 +9,11 @@ substitutions:
 
 esphome:
   name: pulsmeters-190
-  platform: ESP8266
+#   platform: ESP8266
   comment: '${device_description}'
   project:
     name: huizebruin.${name}
     version: "${vdate}"
-
-wifi:
-#   ssid: !secret ssid
-#   password: !secret password
     
 esp8266:
   board: d1_mini
@@ -26,13 +22,18 @@ esp8266:
     version: recommended   
     
 dashboard_import:
-  package_import_url: github://huizebruin/testen/pulscounter.yaml   
+  package_import_url: github://huizebruin/testen/pulscounter.yaml  
+  
+wifi:
+#   ssid: !secret ssid
+#   password: !secret password
+ 
+ 
 #------------------------##------------------------##------------------------##------------------------#
 # ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
 # ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #
   ap:
     ssid: "${name}"
-    password: "s0watermeter"
 
 web_server:
   port: 80

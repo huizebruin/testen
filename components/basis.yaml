@@ -10,6 +10,7 @@ esphome:
   name_add_mac_suffix: true
 
 esp8266:
+  board: d1_mini
   restore_from_flash: true
 
 improv_serial:

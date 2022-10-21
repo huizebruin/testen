@@ -17,8 +17,7 @@ esphome:
 esp8266:
   board: d1_mini
 #  restore_from_flash: True
-  framework:
-    version: recommended  
+
 
 wifi:
 #   ssid: !secret ssid
@@ -77,9 +76,7 @@ globals:
     restore_value: no  # aanpassen naar no indien de nieuwe waarde onder de oude ligt
     initial_value: '2000'   # pulse rate van de kWh meter -> xxx pulses / kWh   
 ota:
-  safe_mode: true
-  reboot_timeout: 10min
-  num_attempts: 5
+
   
 #  ⬇ Enable time component voor reset elke nacht ⬇ #
 time:

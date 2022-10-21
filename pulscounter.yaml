@@ -5,7 +5,7 @@
 substitutions:
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
   name: s0tool-standard
-  vdate: "v22.9.18-b9"  
+  vdate: "v22.9.18-b10"  
 
 esphome:
   name: pulsmeters-190
@@ -16,8 +16,8 @@ esphome:
     version: "${vdate}"
 
 wifi:
-  ssid: !secret ssid
-  password: !secret password
+#   ssid: !secret ssid
+#   password: !secret password
     
 esp8266:
   board: d1_mini

@@ -23,7 +23,10 @@ esp8266:
   board: d1_mini
 #  restore_from_flash: True
   framework:
-    version: recommended        
+    version: recommended   
+    
+dashboard_import:
+  package_import_url: github://huizebruin/testen/pulscounter.yaml   
 #------------------------##------------------------##------------------------##------------------------#
 # ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
 # ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #

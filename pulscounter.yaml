@@ -25,7 +25,8 @@ esp8266:
 #   package_import_url: github://huizebruin/s0tool/esphome/pulscounter.yaml@beta
   
 wifi:
-
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
 #------------------------##------------------------##------------------------##------------------------#
 # ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
 # ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #

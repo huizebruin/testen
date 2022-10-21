@@ -9,6 +9,9 @@ substitutions:
 esphome:
   name_add_mac_suffix: true
 
+esp8266:
+  restore_from_flash: true
+
 improv_serial:
   
 wifi:

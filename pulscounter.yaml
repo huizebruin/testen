@@ -23,4 +23,4 @@ packages:
       - components/basis.yaml
       - components/1000imp.yml
       - components/watermeter.yaml            
-    refresh: 0d 
+#     refresh: 0d 

@@ -1,6 +1,6 @@
-substitutions:
-  device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
-  name: s0tool-standard
+# substitutions:
+#   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
+#   name: s0tool-standard
 
 esphome:
   name: ${name}

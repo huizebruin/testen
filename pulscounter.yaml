@@ -109,7 +109,7 @@ sensor:
     lambda: 
       return id(W_opbrengst_totaal).state + id(totalkwhUsage);
 
-sensor:
+#sensor:
 #------------------------#  sensoren #------------------------#
   - platform: uptime
     id: S0tool_uptime

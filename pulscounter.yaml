@@ -81,7 +81,7 @@ sensor:
     state_class: measurement
     device_class: power
     filters:
-      - lambda: return x * ((60.0 / id(Select_pulse_rate)) * 1000.0);
+      - lambda: return x * ((60.0 / id(Select_pulse_rate)));
 #      - lambda: return x * ((60.0 / atoi(id(Select_pulse_rate).state.c_str()))); 
 
 # ⬇ Totaal opgebracht ⬇ #    

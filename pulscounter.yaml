@@ -1,7 +1,3 @@
-# Delen en bewerken mag maar laat deze eerste regels staan.
-# Bron : https://www.huizebruin.nl
-# Bron File : https://github.com/huizebruin/s0tool/tree/main/esphome
-# © Huizebruin.nl
 substitutions:
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
   name: s0tool-standard
@@ -16,7 +12,7 @@ esphome:
     version: "${vdate}"
   
 dashboard_import:
-  package_import_url: github://huizebruin/testen/pulscounter.yaml #@main
+  package_import_url: github://huizebruin/testen/pulscounter.yaml
 
 packages:   
   remote_package:

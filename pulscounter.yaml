@@ -20,6 +20,6 @@ packages:
     ref: main
     files: 
       - components/basis.yaml
-      - components/1000imp.yml
+      - components/2000imp.yml
       - components/watermeter.yaml            
     refresh: 0d 

@@ -1,26 +1,172 @@
 substitutions:
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate} .
   name: s0tool-standard
-  vdate: "v22.10.1011"
+  vdate: "v22.10.1012"
 
 esphome:
   name: ${name}
   platform: ESP8266
   board: d1_mini
+  name_add_mac_suffix: true
   comment: '${device_description}'
   project:
     name: huizebruin.${name}
     version: "${vdate}"
   
+
+improv_serial:
+  
+wifi:
+  # ssid: "wifi_ssid"
+  # password: "wifi_password"
+# ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
+# ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #
+  ap:
+    ssid: "${name}"
+
+web_server:
+  port: 80
+  
+captive_portal:
+# ⬇ Enable logging ⬇ # 
+logger:
+  level: INFO
+
+ota:
+
+#  ⬇ Enable time component voor reset elke nacht ⬇ #
+time:
+  - platform: homeassistant
+    id: time_homeassistant
+    on_time_sync:
+      - component.update: S0tool_uptime_timestamp  
+  
 dashboard_import:
   package_import_url: github://huizebruin/testen/pulscounter.yaml
+  
+#  # ⬇ Enable Home Assistant API ⬇ # 
+api:
+  services:
+    - service: meterstand_kwh
+      variables:
+        meter_value: float 
+      then:
+        - globals.set:
+            id: totalkwhUsage
+            value: !lambda "return ( meter_value ) ;"
 
-packages:   
-  remote_package:
-    url: https://github.com/huizebruin/testen/
-    ref: main
-    files: 
-      - components/basis.yaml
-      - components/1000imp.yml
-      - components/watermeter.yaml            
-#     refresh: 0d 
+globals:
+  - id: totalkwhUsage
+    type: float #int
+# ⬇ Bij het updaten onder de waarde, verander dit in nee voor 1 run  ⬇ # 
+    restore_value: no
+# ⬇ Bij het flashen,pas dit aan! ⬇ #        
+    initial_value: '01010' 
+    
+  - id: Select_pulse_rate
+    type: int
+    restore_value: no  # aanpassen naar no indien de nieuwe waarde onder de oude ligt
+    initial_value: '1000'   # pulse rate van de kWh meter -> xxx pulses / kWh  
+
+
+
+#------------------------# Kwh meter S0 poort 1 #------------------------#
+sensor:
+# ⬇ kwh meter s0 ⬇ #
+  - platform: pulse_meter
+    pin: D5 
+    name:  "Actuele energie"
+    id: W_opbrengst
+    icon: "mdi:flash"
+#    internal_filter: ${impulslengte} 
+    accuracy_decimals: 3
+    unit_of_measurement: 'kW'
+    state_class: measurement
+    device_class: power
+    filters:
+      - lambda: return x * ((60.0 / id(Select_pulse_rate)) * 1000.0);
+#      - lambda: return x * ((60.0 / atoi(id(Select_pulse_rate).state.c_str()))); 
+
+# ⬇ Totaal opgebracht ⬇ #    
+    total:
+      unit_of_measurement: 'kWh'
+      name: "Totaal opgebracht"
+      id: W_opbrengst_totaal
+      state_class: total_increasing
+      device_class: energy
+      icon: "mdi:flash"
+      accuracy_decimals: 2
+      filters:
+        - multiply: 0.001
+#        - lambda: return x * ((1.0 / atoi(id(Select_pulse_rate).state.c_str()))); 
+
+# ⬇ Kwh meterstand ⬇ stand bij benadering #        
+  - platform: template
+    id: kwh_total
+    name: "Actuele meterstand"
+    state_class: "total_increasing"
+    icon: "mdi:flash"
+    update_interval: 1s
+    unit_of_measurement: 'kWh'
+    accuracy_decimals: 2
+    lambda: 
+      return id(W_opbrengst_totaal).state + id(totalkwhUsage);
+
+sensor:
+#------------------------#  sensoren #------------------------#
+  - platform: uptime
+    id: S0tool_uptime
+
+  - platform: template
+    id: S0tool_uptime_timestamp
+    name: "${name} online sinds"
+    device_class: "timestamp"
+    accuracy_decimals: 0
+    update_interval: never
+    lambda: |-
+      static float timestamp = (
+        id(time_homeassistant).utcnow().timestamp - id(S0tool_uptime).state
+      );
+      return timestamp;  
+# ⬇ versie verbinding informatie sensoren voor in ha ⬇ #
+  # WiFi signal
+  - platform: wifi_signal
+    name: "${name} - WiFi Signal"
+    update_interval: 120s
+    
+text_sensor:
+  - platform: template
+    name: "${name}_versie"
+    id: s0tool_versie
+    icon: "mdi:label-outline"
+    update_interval: 6h
+    lambda: |-
+      return {"${vdate}"};
+  - platform: wifi_info
+    ip_address:
+      name: "${name} IP-adres"
+      id: s0tool_ip_adres
+      icon: mdi:ip-network
+    ssid:
+      name: "${name} Netwerk"
+      id: s0tool_netwerk
+      icon: mdi:access-point-network
+    mac_address:
+      name: "${name} Mac-adres"
+      id: s0tool_mac_adres
+      icon: mdi:folder-key-network-outline
+
+#  restart button  #
+button:  
+  - platform: restart
+    name: "${name} Restart device"
+
+# packages:   
+#   remote_package:
+#     url: https://github.com/huizebruin/testen/
+#     ref: main
+#     files: 
+#       - components/basis.yaml
+#       - components/1000imp.yml
+#       - components/watermeter.yaml            
+# #     refresh: 0d 

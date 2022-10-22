@@ -47,8 +47,8 @@ time:
     on_time_sync:
       - component.update: S0tool_uptime_timestamp  
   
-dashboard_import:
-  package_import_url: github://huizebruin/testen/pulscounter.yaml
+# dashboard_import:
+#   package_import_url: github://huizebruin/testen/pulscounter.yaml
   
 
 

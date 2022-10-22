@@ -3,15 +3,12 @@
 # Bron File : https://github.com/huizebruin/s0tool/tree/main/esphome
 # © Huizebruin.nl
 substitutions:
-  vdate: "v22.10.b12"
+  vdate: "v22.10.18"
   device_description: ${name} gemaakt door huizebruin.nl versie ${vdate}.
 
 esphome:
+  name: ${name}
   name_add_mac_suffix: true
-
-# esp8266:
-#   board: d1_mini
-#   restore_from_flash: true
 
 improv_serial:
   

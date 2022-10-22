@@ -28,8 +28,8 @@ api:
 ota:  
 
 wifi:
-  # ssid: "wifi_ssid"
-  # password: "wifi_password"
+  ssid: !secret ssid
+  password: !secret password
 # ⬇ Hieronder niets veranderen tenzij je het overal goed aanpast ⬇ #
 # ⬇ Schakel fallback-hotspot (captive portal) in voor het geval de wifi-verbinding mislukt ⬇ #
   ap:
